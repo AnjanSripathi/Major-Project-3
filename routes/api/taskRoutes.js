@@ -1,13 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const projectTasks = require('../../controller/projectController');
+const Tasks = require('../../controller/tasksController');
 const verifyToken = require('../../verifyAuthentication');
 
 router.use(verifyToken);
-router.post('/', projectTasks.createProject);
-router.get('/', projectTasks.getProjects);
-router.get('/:id', projectTasks.getProjectById);
-router.put('/:id', projectTasks.updateProject);
-router.delete('/:id', projectTasks.deleteProject);
+
+// router.get('/:id', Tasks.getTaskById);
+router.put('/:taskId', Tasks.updateTask);
+router.delete('/:taskId', Tasks.deleteTask);
 
 module.exports = router;

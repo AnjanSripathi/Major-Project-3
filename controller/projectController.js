@@ -1,4 +1,5 @@
 const Project = require('../models/Project');
+const Task = require('../models/Task');
 const express = require('express');
 
 // const verifyToken = require('../verifyAuthentication');
@@ -41,6 +42,7 @@ const getProjectById = async(req,res)=>{
     }
 }
 
+// 
 const updateProject = async(req,res)=>{
     try{
         const project = await Project.findOneAndUpdate({_id: req.params.id, user: req.user._id}, 
@@ -62,6 +64,7 @@ const deleteProject = async(req,res)=>{
         if(!project){
             return res.status(404).json({ error: 'Project not found' });
         }
+        await Task.deleteMany({ project: project._id });
         res.status(200).json({ message: 'Project deleted successfully' });
     }
     catch(error){

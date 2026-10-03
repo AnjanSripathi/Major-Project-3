@@ -18,6 +18,7 @@ const taskAPI = require('./routes/api/taskRoutes')
 // Below are the API routes for authentication and projects
 app.use('/api/users', authAPI);
 app.use('/api/projects', projectAPI);
+// app.use('/api/projects/:projectId')
 app.use('/api/tasks', taskAPI);
 
 app.listen(port, ()=>{
