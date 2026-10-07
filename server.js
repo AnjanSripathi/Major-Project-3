@@ -7,8 +7,13 @@ require("./config/connection");
 require('dotenv').config();
 const morgan = require('morgan');
 const port = process.env.PORT;
+const cors = require('cors');
 
+const corsOptions={
+    origin: "http://localhost:5173"
+};
 // Middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan("dev"));
 
